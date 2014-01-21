@@ -1,6 +1,6 @@
 name := "play2memcached"
 
-version := "0.0-SNAPSHOT"
+version := "0.1"
 
 organization := "eu.inn"
 
