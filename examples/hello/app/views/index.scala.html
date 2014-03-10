@@ -1,0 +1,103 @@
+@(message: String)
+
+@main("Welcome to Play") {
+
+	<input id="key" value="some-key">
+	<input id="value" value="some-value">
+	<button id="get">get</button>
+	<button id="put">put</button>
+	<button id="delete">delete</button>
+	<button id="getAsync">getAsync</button>
+	<button id="putAsync">putAsync</button>
+	<button id="deleteAsync">deleteAsync</button>
+
+	<hr>
+	result:
+	<iframe id="result" src="" width="100%" height="300px"></iframe>
+	<script>
+		function xhr(options) {
+			var httpRequest = new XMLHttpRequest();
+			httpRequest.onload = function(evt) { options.callback(evt, httpRequest); };
+			httpRequest.onerror = function(evt) { options.callback(evt, httpRequest); };
+			httpRequest.open(options.method, options.uri);
+			if ('params' in options) {
+				httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				httpRequest.send(options.params);
+			}
+			else
+				httpRequest.send();
+		}
+
+		function e(s) {
+			return document.getElementById(s);
+		}
+
+		function show() {
+			var r = e("result");
+			r.src = "/get?key=" + e("key").value;
+		}
+
+		function showAsync() {
+			var r = e("result");
+			r.src = "/getAsync?key=" + e("key").value;
+		}
+
+		show();
+
+		e("get").onclick = function(){
+			show();
+		}
+
+		e("put").onclick = function() {
+			var p = "key=" + e("key").value + "&value=" + e("value").value;
+			xhr({
+				uri:"/put",
+				method: "PUT",
+				params: p,
+				callback: function(request) {
+					show();
+				}
+			});
+		}
+
+		e("delete").onclick = function() {
+			var p = "key=" + e("key").value;
+			xhr({
+				uri:"/delete",
+				method: "DELETE",
+				params: p,
+				callback: function(request) {
+					show();
+				}
+			});
+		}
+
+		e("getAsync").onclick = function(){
+			showAsync();
+		}
+
+		e("putAsync").onclick = function() {
+			var p = "key=" + e("key").value + "&value=" + e("value").value;
+			xhr({
+				uri:"/putAsync",
+				method: "PUT",
+				params: p,
+				callback: function(request) {
+					showAsync();
+				}
+			});
+		}
+
+		e("deleteAsync").onclick = function() {
+			var p = "key=" + e("key").value;
+			xhr({
+				uri:"/deleteAsync",
+				method: "DELETE",
+				params: p,
+				callback: function(request) {
+					showAsync();
+				}
+			});
+		}
+	</script>
+}
