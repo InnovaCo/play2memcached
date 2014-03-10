@@ -7,7 +7,7 @@ Also plugin has enhanced async interface.
 
 # Usage
 
-To use memcached plugin simply add it in file `project/play.plugins` the following line:
+To use memcached plugin simply add in file `project/play.plugins` the following line:
 
 
 	0:eu.inn.play2memcached.MemcachedPlugin
@@ -31,7 +31,7 @@ or asynchronous versions:
 	Memcached.setAsync(data.key, data.value.get)
 	Memcached.removeAsync(data.key)
 
-You can find example app in examples/hello
+You can find full working example app in examples/hello.
 
 # Restrictions
-Currently this testd and works with string data using play 2.2
+Currently this tested and works with string data using play 2.2.
