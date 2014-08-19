@@ -1,16 +1,20 @@
 name := "play2memcached"
 
-version := "0.1.1"
+version := "0.2.0"
 
 organization := "eu.inn"
 
+scalaVersion := "2.11.2"
+
+crossScalaVersions := Seq("2.10.4", "2.11.2")
+
 resolvers ++= Seq("Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/")
 
-libraryDependencies += "net.spy" % "spymemcached" % "2.10.3"
+libraryDependencies += "net.spy" % "spymemcached" % "2.11.4"
 
-libraryDependencies += "com.typesafe.play" %% "play" % "2.2.2"
+libraryDependencies += "com.typesafe.play" %% "play" % "2.3.0"
 
-libraryDependencies += "com.typesafe.play" %% "play-cache" % "2.2.2"
+libraryDependencies += "com.typesafe.play" %% "play-cache" % "2.3.0"
 
 
 // Sonatype repositary publish options
